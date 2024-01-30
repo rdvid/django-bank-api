@@ -1,12 +1,13 @@
 import os, django
+import random
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'setup.settings')
 django.setup()
 
 from faker import Faker
 from validate_docbr import CPF
-import random
 from clientes.models import Cliente
+
 
 def criando_pessoas(quantidade_de_pessoas):
     fake = Faker('pt_BR')

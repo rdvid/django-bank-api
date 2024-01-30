@@ -2,6 +2,7 @@ from rest_framework import serializers, filters
 from clientes.models import Cliente
 from clientes.validators import *
 
+
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
@@ -15,5 +16,5 @@ class ClienteSerializer(serializers.ModelSerializer):
         if not rg_valido(data['rg']):
             raise serializers.ValidationError({"RG":"O RG precisa ter 9 dígitos"})
         if not celular_valido(data['celular']):
-            raise serializers.ValidationError({"Celular":"O número do celular deve seguir o padrão: (xx) 9xxxx-xxxx (respeitando espaços e traços)"})
+            raise serializers.ValidationError({"Celular":"O número do celular deve seguir o padrão: (xx) 9xxxx-xxxx (respeitando espacos e tracos)"})
         return data
