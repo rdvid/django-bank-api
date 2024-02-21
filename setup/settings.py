@@ -42,9 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
+    'rest_framework_simplejwt.token_blacklist',
     'rest_framework',
     'rest_framework_json_api',
-    'users'
+    'users',
+    'banking'
 ]
 
 MIDDLEWARE = [
@@ -87,8 +89,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': os.environ.get('DB_USERNAME'),
         'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': 5433
+        'PORT': 5432
     }
 }
 
@@ -131,6 +132,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.AdminRenderer',
@@ -142,4 +146,4 @@ REST_FRAMEWORK = {
 }
     
 
-DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
