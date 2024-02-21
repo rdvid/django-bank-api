@@ -7,16 +7,24 @@
         POSTGRES_PASSWORD: ${DB_PASSWORD}
         PGDATA: /data/postgres
       volumes:
-        - postgres:/data/postgres
+        - db:/data/postgres
       ports:
         - "5432:5432"
       networks:
-        - postgres
+        - db
       restart: unless-stopped
 
+    redis:
+      image: redis:7.0-alpine
+      ports:
+        - '6379:6379'
+      volumes:
+        - redis:/data
+
   networks:
-    postgres:
+    db:
       driver: bridge
 
   volumes:
-    postgres:
+    db:
+    redis:
